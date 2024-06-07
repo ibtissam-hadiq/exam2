@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+    <link rel="stylesheet" type="text/css" href="path/to/your/css/file.css">
+</head>
+<body>
+<h1>Employee List</h1>
+<a th:href="@{/manager/add-employee}">Add Employee</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Skills</th>
+        <th>Projects</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employe : ${employes}">
+        <td th:text="${employe.id}">1</td>
+        <td th:text="${employe.name}">John</td>
+        <td th:text="${employe.email}">john@example.com</td>
+        <td>
+            <ul>
+                <li th:each="skill : ${employe.skills}" th:text="${skill.name}">Java</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li th:each="projet : ${employe.projets}" th:text="${projet.name}">Project A</li>
+            </ul>
+        </td>
+        <td>
+            <button th:onclick="'/manager/remove/' + ${employe.id}">Remove</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
